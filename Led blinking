@@ -1,39 +1,29 @@
 #include <xc.h>
-
-#include < plib/delays.h>
-
+#include <plib/delays.h>
 #include "Config.h"
 
-# ifndef XTAL_FREQ
-
+#ifndef _XTAL_FREQ
 #define _XTAL_FREQ 20000000
+#endif
 
-# endif
+void delay_ms(unsigned char t);
 
-void delay_ms (unsigned char t);
+int main() {
+    TRISD = 0;
 
-int main()
-{
-TRISD=0;
+    while (1) {
+        PORTD = 0xFF;
+        delay_ms(100);
 
-while (1)
-{
-PORTD = 0xFF;
-
-delay_ms (100);
-
-PORTD = 0X00;
-
-delay_ms (100);
-}
+        PORTD = 0x00;
+        delay_ms(100);
+    }
 }
 
-void delay_ms (unsigned char t)
+void delay_ms(unsigned char t) {
+    int i;
 
-{ int i ;
-
-for (i=0; I<t; I++)
-
-Delay 1KTCYx (5);
-
+    for (i = 0; i < t; i++) {
+        Delay1KTCYx(5);
+    }
 }
